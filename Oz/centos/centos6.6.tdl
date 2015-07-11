@@ -1,0 +1,25 @@
+<template>
+<name>centos66_x86_64-1G1U30G</name>
+<description>Centos 6.6 x86_64 template</description>
+<os>
+<name>CentOS-6</name>
+<version>6</version>
+<arch>x86_64</arch>
+<rootpw>root</rootpw>
+<install type='iso'>
+<iso>file://///iso/CentOS-6.6-x86_64-bin-DVD1.iso</iso>
+</install>
+</os>
+<disk>
+   <size>30</size>
+</disk>
+<commands>
+<command name='update'>
+sed -i '/^HWADDR/d' /etc/sysconfig/network-scripts/ifcfg-eth0
+sed -i '/^UUID/d' /etc/sysconfig/network-scripts/ifcfg-eth0
+echo -n > /etc/udev/rules.d/70-persistent-net.rules
+echo -n > /lib/udev/rules.d/75-persistent-net-generator.rules
+sed -i '/^SELINUX=/s/enforcing/disabled/' /etc/selinux/config
+</command>
+</commands>
+</template>
